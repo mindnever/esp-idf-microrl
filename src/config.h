@@ -21,19 +21,19 @@ typed in command line exceed this value, then prints message about it and
 command line not to be parced and 'execute' callback will not calls.
 Token is word separate by white space, for example 3 token line:
 "IRin> set mode test" */
-#define _COMMAND_TOKEN_NMB 8
+#define _COMMAND_TOKEN_NMB 28
 
 /*
 Define you prompt string here. You can use colors escape code, for highlight you prompt,
 for example this prompt will green color (if you terminal supports color)*/
 //#define _PROMPT_DEFAULT "\033[32mIRin >\033[0m "	// green color
-#define _PROMPT_DEFAULT "\033[32mIRin >\033[0m "	// green color
+#define _PROMPT_DEFAULT "WOB > "	// green color
 //#define _PROMPT_DEFAULT "IRin > "
 
 /*
 Define prompt text (without ESC sequence, only text) prompt length, it needs because if you use
 ESC sequence, it's not possible detect only text length*/
-#define _PROMPT_LEN       7
+#define _PROMPT_LEN       6
 
 /*Define it, if you wanna use completion functional, also set completion callback in you code,
 now if user press TAB calls 'copmlitetion' callback. If you no need it, you can just set 
@@ -52,7 +52,7 @@ For saving memory, each entered cmdline store to history in ring buffer,
 so we can not say, how many line we can store, it depends from cmdline len,
 but memory using more effective. We not prefer dinamic memory allocation for
 small and embedded devices. Overhead is 2 char on each saved line*/
-#define _RING_HISTORY_LEN 64
+#define _RING_HISTORY_LEN 256
 
 /*
 Enable Handling terminal ESC sequence. If disabling, then cursor arrow, HOME, END will not work,
@@ -65,11 +65,11 @@ If not defined, use my own u16int_to_str variant, it's save about 800 byte of co
 on AVR (avr-gcc build).
 Try to build with and without, and compare total code size for tune library.
 */
-#define _USE_LIBC_STDIO
+//#define _USE_LIBC_STDIO
 
 /*
 Enable 'interrupt signal' callback, if user press Ctrl+C */
-#define _USE_CTLR_C
+//#define _USE_CTLR_C
 
 /*
 Print prompt at 'microrl_init', if enable, prompt will print at startup, 
@@ -80,7 +80,7 @@ already initialize and ready to print message */
 
 /*
 New line symbol */
-#define _ENDL_LF
+#define _ENDL_CR
 
 #if defined(_ENDL_CR)
 #define ENDL "\r"
